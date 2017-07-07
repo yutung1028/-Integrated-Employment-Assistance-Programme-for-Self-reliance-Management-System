@@ -1,0 +1,142 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+        @media print{@page {size: landscape}}
+		.merged_forms {
+			width:1122px; 
+			height:793px;
+		}
+		body {
+			margin: 0px;
+		}
+		@page 
+	    {
+          
+	       /* size:  auto;*/   /* auto is the initial value */
+	        margin: 0mm;  /* this affects the margin in the printer settings */
+	    }
+        
+	</style>
+</head>
+<body>
+	<p style="position:absolute;top:100px;left:925px;">
+					<% if (typeof sr_no != 'undefined') { %> 
+                         <%= cases['sr_no'] %>
+                    <% } %>
+                    
+                    <!-- print date right -->
+                    <p style="position:absolute;top:231px;left:983px;">
+					<% if (typeof cases.print_date != 'undefined') { %> 
+                              <% if(typeof cases.print_date['year'] != 'undefined' && typeof cases.print_date['month'] != 'undefined' && typeof cases.print_date['day'] != 'undefined') { %>
+                                    <%= cases.print_date['year'] %> 年 <%= cases.print_date['month'] %> 月 <%= cases.print_date['day'] %> 日
+                              <% } %>
+                    <% } %>
+
+                    <p style="position:absolute;top:119px;left:925px;">
+					<% if (typeof chin_name != 'undefined') { %> 
+                         <%= cases['chin_name'] %>
+                    <% } %>
+                    
+
+                    <p style="position:absolute;top:82px;left:880px;">
+					CWN</p>
+
+                    <p style="position:absolute;top:82px;left:955px;">
+					<% if (typeof ref_no != 'undefined') { %> 
+                         <%= cases['ref_no'] %>
+                    <% } %>
+                    <!-- <% if (typeof cases['witness'] != 'undefined') { %>
+	                    <p style="position:absolute;top:1462px;left:685px;">
+						<% if (typeof cases['witness'].chin_name != 'undefined') { %> 
+	                         <%= cases['witness'].chin_name %> 
+	                         <% if (typeof cases['witness'].position != 'undefined') { %>
+	                         	<%= cases['witness'].position %> 
+	                         <% } %>
+	                    <% } %>
+	                    
+                    <% } %> -->
+
+                    <!-- interview date -->
+                    <p style="position:absolute;top:194px;left:137px;">
+                    <% if (typeof cases.interview_date != 'undefined') { %>
+                    	<%= cases.interview_date['year'] %>
+                    <% } %>
+
+                    <p style="position:absolute;top:194px;left:220px;">
+                    <% if (typeof cases.interview_date != 'undefined') { %>
+                    	<%= cases.interview_date['month'] %>
+                    <% } %>
+
+                    <p style="position:absolute;top:194px;left:295px;">
+                    <% if (typeof cases.interview_date != 'undefined') { %>
+                    	<%= cases.interview_date['day'] %>
+                    <% } %>
+
+                    <!-- interview time -->
+                    <% if (typeof cases.interview_time != 'undefined') { %>
+
+	                    <p style="position:absolute;top:174px;left:362px;font-size:25px">
+	                    <% if (cases.interview_time['half_day'] == 1) { %>
+	                    	/
+	                    <% } %>
+	                    <p style="position:absolute;top:174px;left:380px;font-size:25px">
+	                    <% if (cases.interview_time['half_day'] == 0) { %>
+	                    	/
+	                    <% } %>
+
+                    <% } %>
+
+                    <p style="position:absolute;top:194px;left:430px;">
+                    <% if (typeof cases.interview_time != 'undefined') { %>
+                    	<%= cases.interview_time['hour'] %>
+                    <% } %>
+
+                    <p style="position:absolute;top:194px;left:505px;">
+                    <% if (typeof cases.interview_time != 'undefined') { %>
+                    	<%= cases.interview_time['minutes'] %>
+                    <% } %>
+
+                    <!-- print date left -->
+                    <p style="position:absolute;top:270px;left:180px;">
+                    <% if (typeof cases.print_date != 'undefined') { %> 
+                         <% if(typeof cases.print_date['year'] != 'undefined') { %>
+                              <%= cases.print_date['year'] %> 
+                         <% } %>
+                    <% } %>
+
+                    <p style="position:absolute;top:270px;left:263px;">
+                    <% if (typeof cases.print_date != 'undefined') { %> 
+                         <% if(typeof cases.print_date['month'] != 'undefined') { %>
+                              <%= cases.print_date['month'] %> 
+                         <% } %>
+                    <% } %>
+
+                    <p style="position:absolute;top:270px;left:335px;">
+                    <% if (typeof cases.print_date != 'undefined') { %> 
+                         <% if(typeof cases.print_date['year'] != 'undefined') { %>
+                              <%= cases.print_date['day'] %> 
+                         <% } %>
+                    <% } %>
+
+                    <!-- interview date two -->
+                    <p style="position:absolute;top:270px;left:410px;">
+                    <% if (typeof cases.interview_date != 'undefined') { %>
+                    	<%= cases.interview_date['year'] %>
+                    <% } %>
+
+                    <p style="position:absolute;top:270px;left:493px;">
+                    <% if (typeof cases.interview_date != 'undefined') { %>
+                    	<%= cases.interview_date['month'] %>
+                    <% } %>
+
+                    <p style="position:absolute;top:270px;left:568px;">
+                    <% if (typeof cases.interview_date != 'undefined') { %>
+                    	<%= cases.interview_date['day'] %>
+                    <% } %>
+                    
+
+                    
+				</p><div><img class="merged_forms" src="forms/10a.jpg/page0001.jpg"></div>
+			
+				<div><img class="merged_forms" src="forms/10a.jpg/page0002.jpg"></div>
+</body>

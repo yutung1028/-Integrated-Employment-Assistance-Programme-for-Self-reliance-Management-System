@@ -1,0 +1,251 @@
+<%- include ../common/header %>
+<%- include ../common/new_left_menu %>
+<div class="push page-content">
+
+		  	<div class="row">
+  				<div class="col-md-12">
+  					<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">個案列印</div>
+						</div>
+		  				<div class="panel-body">
+		  					<form method="post" action="/10a-chi" target="form-10a" class="form-horizontal" id="combine_form" role="form">
+
+		  						  <div class="form-group">
+		  						  	<label for="sr_no" class="col-sm-2 control-label form_heading">服務使用者編號：</label>
+		  						  	<div class="col-sm-4">
+								      <span class="form-control form_input_text no_border">
+									    <% if (case_data[0].sr_no != null) { %>
+									      <%= case_data[0].sr_no %>
+									      <input type="hidden" name="sr_no" value="<%= case_data[0].sr_no %>">
+								      	<% } %>
+								      </span>
+								    </div>
+
+								    <label for="ref_no" class="col-sm-2 control-label form_heading">社署檔案編號：</label>
+		  						  	<div class="col-sm-4">
+								      <span class="form-control form_input_text no_border">
+								      	<%= case_data[0].ref_no %>
+								      	<input type="hidden" name="ref_no" value="<%= case_data[0].ref_no %>">
+								      </span>
+								    </div>
+		  						  </div>
+
+		  						  <div class="form-group">
+		  						  	<label for="ref_no" class="col-sm-2 control-label form_heading">英文姓名：</label>
+		  						  	<div class="col-sm-4">
+								      <span class="form-control form_input_text no_border">
+								      	<%= case_data[0].english_name %>
+								      	<input type="hidden" name="eng_name" value="<%= case_data[0].english_name %>">
+								      </span>
+								    </div>
+
+								    <label for="ref_no" class="col-sm-2 control-label form_heading">中文姓名：</label>
+		  						  	<div class="col-sm-4">
+								      <span class="form-control form_input_text no_border">
+									    <% if (case_data[0].chinese_name != null) { %>
+									      <%= case_data[0].chinese_name %>
+									      <input type="hidden" name="chin_name" value="<%= case_data[0].chinese_name %>">
+								      	<% } %>
+								      </span>
+								    </div>
+		  						  </div>
+								  
+								  <div class="form-group">
+
+								    <label for="date" class="col-sm-2 control-label form_heading">列印日期：</label>
+								    <div class="col-sm-4">
+								      <select class="form-control" style="padding:0px;" name="print_date" id="date">
+											<option value="0"></option>
+											<% following_days.forEach(function(day) {  %>
+												<option value="<%= day['full_date'] %>"
+												<% if (day['number'] == 1) { %>
+												 	selected
+												<% } %>
+												> <%= day['full_date'] %> <%= CommonService.convertDayNum2Name(day['weekday']) %> 
+												<% if (day['public_holiday']) { %>
+													(公眾假期：<%= day['public_holiday']['chinese_name'] %>)
+												<% } %>
+												</option>
+											<% }) %>
+										</select> 
+								    </div>
+
+								    <label class="col-md-2 control-label" for="select-1">見證人:</label>
+									<div class="col-md-4">
+										<select class="form-control" style="padding:0px;" name="witness" id="witness_option">
+											<option value="0"></option>
+											<% witness_list.forEach(function(witness) { %>
+												<option value="<%= witness.id %> "
+													<% if (case_data[0].witness == witness.id) { %>
+														selected
+													<% } %>
+												> <%= witness.display_name %> </option>
+											<% }) %>
+										</select> 
+
+										<% if (typeof case_data[0].interview_date != null) { %>
+											<input type="hidden" name="interview_date" value="<%= CommonService.changeDateFormat(case_data[0].interview_date) %>">
+										<% } %>
+
+										<% if (typeof case_data[0].interview_time != null) { %>
+											<input type="hidden" name="interview_time" value="<%= case_data[0].interview_time %>">
+										<% } %>
+	
+									</div>
+								  </div>
+
+								  <br>
+
+								  <div class="form-group">
+								    <div class="col-sm-offset-11 col-sm-1">
+								      <button id="btn_submit" class="btn btn-primary">合併資料</button>
+								    </div>
+								  </div>
+								</form>
+							<hr>
+
+							<legend>合併文件結果</legend>
+
+							<div class="wrapping-div">
+								<div class="form-title">10a - 求職記錄及工作計劃表</div>
+
+								<iframe id="form-10a" name="form-10a" width="100%" src="../initial_message"></iframe>
+				              
+							</div>
+							<div class="" style="margin-top:30px;">
+			                 	<button type="button" class="btn btn-lg btn-block btn-primary" id="print_10a">列印求職記錄及工作計劃表</button>
+			              	</div>
+
+			              	<hr>
+
+			              	<div class="wrapping-div" style="margin-top:10px;">
+								<div class="form-title">o2a - 聲明</div>
+
+								<iframe id="form-o2a" name="form-o2a" width="100%" src="../initial_message"></iframe>
+				              
+							</div>
+							<div class="" style="margin-top:30px;">
+			                 	<button type="button" class="btn btn-lg btn-block btn-primary" id="print_o2a">列印聲明</button>
+			              	</div>
+
+			              	<hr>
+
+			              	<div class="wrapping-div" style="margin-top:10px;">
+								<div class="form-title">4 - 更改事項通知(致社會保障辦事處)</div>
+
+								<iframe id="form-4" name="form-4" width="100%" src="../initial_message"></iframe>
+				              
+							</div>
+							<div class="" style="margin-top:30px;">
+			                 	<button type="button" class="btn btn-lg btn-block btn-primary" id="print_4">列印更改事項通知</button>
+			                 	<button type="button" class="btn btn-lg btn-block btn-default" id="back_button">返回個案搜尋</button>
+			              	</div>
+							
+		  				</div>
+		  			</div>
+  				</div>
+  					
+  			</div>
+  		</div>
+	</div>
+</div>
+
+<%- include ../common/footer %>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/custom.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+
+	<!-- Latest compiled and minified Locales -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-zh-TW.min.js"></script>
+
+    <script type="text/javascript">
+
+    	$("#print_10a").click(function(event) {
+	      window.frames["form-10a"].focus();
+	      window.frames["form-10a"].print();
+	    })
+
+	    $("#print_o2a").click(function(event) {
+	      window.frames["form-o2a"].focus();
+	      window.frames["form-o2a"].print();
+	    })
+
+	    $("#print_4").click(function(event) {
+	      window.frames["form-4"].focus();
+	      window.frames["form-4"].print();
+	    })
+	    
+	    $("#btn_submit").click(function(event) {
+	      event.preventDefault();
+
+	      //Combine 10a form.
+	      if ($("#combine_form").attr("target") != "form-10a") {
+	      	$("#combine_form").attr("action","/10a-chi");
+	      	$("#combine_form").attr("target","form-10a");
+	      }
+	      if ($("#form-10a").attr("src") != "10a-chi") {
+	      	$("#form-10a").attr("src","10a-chi");
+	      	$("#form-10a").attr("height",600);
+	      }
+	      $(this).parents("#combine_form").submit();
+
+	      //Combine o2a form.
+	      if ($("#combine_form").attr("target") != "form-o2a") {
+	      $("#combine_form").attr("action","/o2a-chi");
+	      	$("#combine_form").attr("target","form-o2a");
+	      }
+	      if ($("#form-o2a").attr("src") != "o2a-chi") {
+	      	$("#form-o2a").attr("src","o2a-chi");
+	      	$("#form-o2a").attr("height",600);
+	      }
+	      $(this).parents("#combine_form").submit();
+
+	      //Combine 4 form.
+	      if ($("#combine_form").attr("target") != "form-4") {
+	      $("#combine_form").attr("action","/4-eng");
+	      	$("#combine_form").attr("target","form-4");
+	      }
+	      if ($("#form-4").attr("src") != "4-eng") {
+	      	$("#form-4").attr("src","4-eng");
+	      	$("#form-4").attr("height",600);
+	      }
+	      $(this).parents("#combine_form").submit();
+
+	    })
+
+	    $("#back_button").click(function(event) {
+	    	event.preventDefault();
+
+	    	window.location = "/cases/search";
+	    })
+
+	    $( document ).ready(function() {
+	    	$("#date").change(function(){
+	    		selected_date = $(this).val();
+	    		//console.log(selected_date);
+			    if ($("#date option[value='" + selected_date + "']").text().indexOf("公眾假期") > -1) {
+			    	alert("注意！這天為公眾假期，請確定是否把日期設定在該日子上。");
+			    }
+			});
+    		//$("#witness_options").val('<%= case_data[0].organization %>');
+
+    		//$('#witness_options').find("[value=2]").attr('selected','selected');
+	    	//console.log(<%= case_data[0].organization %>);
+	    })
+
+    </script>
+    </body>
+</html>

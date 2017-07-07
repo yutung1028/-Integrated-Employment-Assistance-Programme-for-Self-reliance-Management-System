@@ -1,0 +1,63 @@
+<%- include ../common/header %>
+<%- include ../common/new_left_menu %>
+
+<div class="push page-content">
+
+		  	<div class="row">
+  				<div class="col-md-12">
+  					<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">檔案上載</div>
+							
+							<!-- <div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div> -->
+						</div>
+		  				<div class="panel-body">
+		  					
+								<div class="import-message">
+									<span style="position:relative; left:16px;">
+										檔案己成功上載。
+									</span>
+								</div>
+								<br>
+								
+								<img class="img-center" src="../images/success-check-icon.png" alt="success" height="240" width="200">
+								
+								<br>
+
+							    <div>
+							      <button type="button" class="btn btn-lg btn-block btn-default" id="back_button">返回個案搜尋</button>
+							    </div>
+							</form>
+							
+		  				</div>
+		  			</div>
+  				</div>
+  					
+  			</div>
+  		</div>
+	</div>
+</div>
+
+<%- include ../common/footer %>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/custom.js"></script>
+    
+    <script type="text/javascript">
+    	$("#back_button").click(function(event) {
+	    	event.preventDefault();
+
+	    	window.location = "/cases/search";
+	    })
+    </script>
+    </body>
+</html>

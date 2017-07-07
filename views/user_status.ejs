@@ -1,0 +1,180 @@
+<%- include /common/header %>
+
+<div class="page-content">
+  <div class="row">
+
+    <%- include /common/left_menu %>
+
+    <div ng-app="socketStatusApp" ng-controller="StatusController" class="col-md-10">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content-box-large">
+            <div class="panel-heading">
+              <div class="panel-title">職員動態</div>
+            
+            </div>
+            <div class="panel-body panel-no-lr-padding">
+              <div class="col-md-12">
+
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>職員名稱</th>
+                      <th>狀態</th>
+                      <th>附加訊息</th>
+                      <th>更新時間</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        <tr dir-paginate="status in statusList | orderBy:predicate:reverse | limitTo: 20  | itemsPerPage: 5"">
+                          <td> {{ status.display_name }}</td>
+                          <td> 
+                            <span ng-if="status.status == 0">
+                                等待接面
+                            </span> 
+                            <span ng-if="status.status == 1">
+                                面見中
+                            </span> 
+                            <span ng-if="status.status == 2">
+                                處理中心事務
+                            </span>
+                          </td>
+                          <td> {{ status.message }} </td>
+                          <td> {{ status.createdAt | date:'yyyy-MM-dd HH:mm:ss' }} </td>
+                        </tr>
+                  </tbody>
+                </table>
+                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="templates/dirPagination.tpl.html"></dir-pagination-controls>
+		  			<div class="row">
+		  				<div class="col-md-6">
+
+		  					<div class="content-box-header">
+			  					<div class="panel-title">更新狀態</div>
+				  			</div>
+
+				  			<div class="content-box-small box-with-header">
+				  				
+					  			<table class="status_table">
+                    <form> 
+                      <tr>
+                        <th>職員：</th>
+                        <td class="broad-width-td" >
+                          <%= user.display_name %>
+                          <input type="hidden" id="username" value="<%= user.display_name %>">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>狀態：</th>
+                        <td class="broad-width-td">
+                          <div class="form-group" style="margin-bottom: 0px;">
+                            <select class="form-control" id="sel1" style="height: 25px;" ng-model = "userStatus">
+                              <option value="0">等待接見</option>
+                              <option value="1">面見中</option>
+                              <option value="2">處理中心事務</option>
+                            </select>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>附加訊息（如有）：</th>
+                        <td class="broad-width-td">
+                          <textarea class="form-control" placeholder="請在此輸入任何附加訊息。" rows="2" ng-model = "userMessage"></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                      <td></th>
+                        <td>
+                          <button style="margin-top: 10px;" type="submit" class="btn btn-primary" ng-click="updateStatus()">更新</button>
+                        </td>
+                      </tr>
+                    </form>
+                  </table>
+								
+							</div>
+		  				</div>
+		  			</div>
+		  		</div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+            
+
+    </div>
+  </div>
+</div>
+
+<%- include /common/footer %>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <script src="js/custom.js"></script>
+     <script src="js/dirPagination.js"></script>
+    <script type"text/javascript" src="/js/dependencies/sails.io.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+    <script type="text/javascript">
+      var statusApp = angular.module('socketStatusApp', ['angular.filter','angularUtils.directives.dirPagination']);
+
+      //statusApp.config(['$compileProvider', function ($compileProvider) {
+        // disable debug info
+      //  $compileProvider.debugInfoEnabled(false);
+      //}]);
+
+      statusApp.controller('StatusController',['$http','$log','$scope',function($http,$log,$scope){
+        // $http , $scope , $log injections
+
+        $scope.username = $("#username").val();
+        $scope.predicate = '-id';
+        $scope.reverse = false;
+        $scope.baseUrl = 'http://locslhost:1337';
+        $scope.statusList =[];
+           
+
+        $scope.getAllstatus = function(){
+
+          io.socket.get('/userstatus');
+
+          $http.get('/userstatus')
+             .success(function(success_data){
+
+                $scope.statusList = success_data;
+                $log.info(success_data);
+             });
+        };
+
+         $scope.getAllstatus();
+
+         io.socket.on('userstatus',function(obj){
+
+            if(obj.verb === 'created'){
+              $log.info(obj)
+
+              $scope.statusList.push(obj.data);
+              $scope.$digest();
+            }
+
+          });
+
+          $scope.updateStatus = function(){
+            $log.info($scope.userStatus);
+            $log.info($scope.userMessage);
+            io.socket.post('/userstatus/addStatus/',{display_name:$scope.username,status:$scope.userStatus, message: $scope.userMessage});
+            $scope.userStatus = "";
+            $scope.userMessage = "";
+          };
+
+
+        
+      }]);
+    </script>
+  </body>
+</html>

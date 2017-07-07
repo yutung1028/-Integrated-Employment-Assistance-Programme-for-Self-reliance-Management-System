@@ -1,0 +1,131 @@
+<%- include common/header %>
+<%- include /common/new_left_menu %>
+
+<div class="push page-content">
+
+		  	<div class="row">
+  				<div class="col-md-12">
+  					<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">預約下次面談</div>
+							
+							<!-- <div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div> -->
+						</div>
+		  				<div class="panel-body">
+		  					<form method="post" action="/10a-chi" target="form-iframe" class="form-horizontal" id="submit_form" role="form">
+								  
+								  <div class="form-group">
+								    <label for="eng_name" class="col-sm-2 control-label form_heading">姓名：</label>
+								    <div class="col-sm-2">
+								      <input type="text" class="form-control form_input_text" id="eng_name" name="eng_name" placeholder="">
+								    </div>
+								  </div>
+
+								  <div class="form-group">
+								    <label for="hkic_no" class="col-sm-2 control-label form_heading">HKIC no.：</label>
+								    <div class="col-sm-2">
+								      <input type="text" class="form-control form_input_text" id="hkic_no" name="hkic_no" placeholder="">
+								    </div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">面談日期：</label>
+								  	<div class="col-sm-4">
+								  		<input type="date" class="form-control form_input_text" id="" name="start_date" placeholder="yyyy-mm-dd">
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">面談開始時間：</label>
+								  	<div class="col-sm-4">
+								  		<input type="time" class="form-control form_input_text" id="" name="start_time" placeholder="HH:MM">
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">面談結束時間：</label>
+								  	<div class="col-sm-4">
+								  		<input type="time" class="form-control form_input_text" id="" name="end_time" placeholder="HH:MM">
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+										<label class="col-md-2 control-label" for="select-1">預約房間</label>
+											<div class="col-md-4">
+												<select class="form-control" name="room_booked">
+													<option value="0">無需預留房間</option>
+													<option value="1">預留房間一</option>
+													<option value="2">預留房間二</option>
+													<option value="3">預留房間三</option>
+												</select> 
+			
+											</div>
+										</div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">備註：</label>
+								  	<div class="col-sm-10">
+								  		<textarea name="remark" class="form-control" placeholder="" rows="3"></textarea>
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label"></label>
+								  	<div class="col-sm-10"></div>
+								  </div>
+
+								  <div class="form-group">
+								    <div class="col-sm-offset-2 col-sm-10">
+								      <button id="btn_submit" class="btn btn-primary">新增</button>
+								    </div>
+								  </div>
+								</form>
+							<br>
+							<legend>合併文件結果</legend>
+
+							<iframe id="form-iframe" name="form-iframe" width="100%" src="initial_message"></iframe>
+			              
+			              	<div class="" style="margin-top:30px;">
+			                 	<button type="button" class="btn btn-lg btn-block btn-primary" id="print_button">列印求職記錄及工作計劃表</button>
+			                 	<button type="button" class="btn btn-lg btn-block btn-default">返回中心日歷</button>
+			              	</div>
+		  				</div>
+		  			</div>
+  				</div>
+  					
+  			</div>
+  		</div>
+	</div>
+</div>
+
+<%- include common/footer %>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/custom.js"></script>
+    
+    <script type="text/javascript">
+    	$("#print_button").click(function(event) {
+	      window.frames["form-iframe"].focus();
+	      window.frames["form-iframe"].print();
+	    })
+	    $("#btn_submit").click(function(event) {
+	      event.preventDefault();
+	      if ($("#form-iframe").attr("src") != "10a-chi") {
+	      	$("#form-iframe").attr("src","10a-chi");
+	      }
+
+	      $("#submit_form").submit();
+
+	    })
+    </script>
+    </body>
+</html>

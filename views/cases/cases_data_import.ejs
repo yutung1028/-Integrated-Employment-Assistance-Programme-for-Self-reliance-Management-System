@@ -1,0 +1,77 @@
+<%- include ../common/header %>
+<%- include ../common/new_left_menu %>
+
+<div class="push page-content">
+
+		  	<div class="row">
+  				<div class="col-md-12">
+  					<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">檔案上載</div>
+							
+							<!-- <div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div> -->
+						</div>
+		  				<div class="panel-body">
+		  					<form method="post" action="/cases/import_data_api" enctype="multipart/form-data" class="form-horizontal" id="upload_form" role="form">
+								<div>請按"選擇檔案"以選擇所需上載的檔案，選擇後接"確定"上載檔案。</div>
+								<br>
+								<div style="position:relative;">
+							        <a class='btn btn-default'>
+							            選擇檔案
+							            <input type="file" class="upload-btn" name="file_upload"  multiple="multiple" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+							        </a>
+							        &nbsp;
+							        <span class='label label-info' id="upload-file-info"></span>
+								</div>
+
+								<br>
+
+							    <div class="">
+							      <button disabled id="btn_submit" class="btn btn-primary">上載</button>
+							      <button disabled class="hidden btn btn-info" id="loading_icon"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> 請稍候......上傳期間請勿離開此頁面</button>
+							    </div>
+							</form>
+							
+		  				</div>
+		  			</div>
+  				</div>
+  					
+  			</div>
+  		</div>
+	</div>
+</div>
+
+<%- include ../common/footer %>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/custom.js"></script>
+    
+    <script type="text/javascript">
+    	$(".upload-btn").change(function(event) {
+    		if ($(this).val().indexOf("面談總表") > -1) {
+    			$("#btn_submit").prop('disabled', false);
+    			$("#upload-file-info").html($(this).val());
+    		} else {
+    			$("#btn_submit").prop('disabled', true);
+    			alert("目前只支援上載檔案'面談總表'。")
+    		}
+    	})
+
+    	$("#btn_submit").click(function(event) {
+			event.preventDefault();
+			$(this).addClass("hidden");
+			$("#loading_icon").removeClass("hidden");
+			$("#upload_form").submit();
+		});
+    </script>
+    </body>
+</html>

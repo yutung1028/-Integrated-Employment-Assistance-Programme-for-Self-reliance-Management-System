@@ -1,0 +1,23 @@
+<nav class="pushy pushy-left">
+    <ul>
+        <li class="pushy-link"><a href="/"><i class="glyphicon glyphicon-home glyphicon-right-margin-one"></i> 首頁</a></li>
+        <li class="pushy-link"><a href="/cases/search"><i class="glyphicon glyphicon-search glyphicon-right-margin-one"></i> 搜尋個案</a></li>
+        <% if (req.user.upload) { %>
+            <li class="pushy-link"><a href="/cases/import_data"><i class="glyphicon glyphicon-upload glyphicon-right-margin-one"></i> 檔案上載</a></li>
+        <% } %>
+        <!-- <li class="pushy-link"><a href="/add_booking"><i class="glyphicon glyphicon-bookmark glyphicon-right-margin-one"></i> 預約面談</a></li>
+        <li class="pushy-link"><a href="/calendar"><i class="glyphicon glyphicon-calendar glyphicon-right-margin-one"></i> 中心日歷</a></li>
+        <li class="pushy-link"><a href="/referral/add"><i class="glyphicon glyphicon-list glyphicon-right-margin-one"></i> 新增轉介</a></li>
+        <li class="pushy-link"><a href="/status"><i class="glyphicon glyphicon-user glyphicon-right-margin-one"></i> 職員動態</a></li> -->
+        <li class="pushy-submenu">
+            <a href="#"><i class="glyphicon glyphicon-user glyphicon-right-margin-two"></i>我的賬戶</a>
+            <ul>
+                <li class="pushy-link"><a href="/user">用戶資料</a></li>
+                <li class="pushy-link"><a href="/logout">登出</a></li>
+            </ul>
+        </li> 
+    </ul>
+</nav>
+
+<!-- Site Overlay -->
+<div class="site-overlay"></div>

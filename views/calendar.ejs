@@ -1,0 +1,85 @@
+<%- include /common/header %>
+<%- include /common/new_left_menu %>
+
+<div class="push page-content">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content-box-large">
+            <div class="panel-heading">
+              <div class="panel-title"></div>
+            
+            </div>
+            <div class="panel-body panel-no-lr-padding">
+              <div class="col-md-12">
+   
+                <div id='calendar'></div>
+		  			
+		  		    </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+            
+
+    </div>
+  </div>
+</div>
+
+<%- include /common/footer %>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="js/custom.js"></script>
+
+    <link rel='stylesheet' href='/fullcalendar-2.8.0/fullcalendar.css' />
+    <script src='/fullcalendar-2.8.0/lib/jquery.min.js'></script>
+    <script src='/fullcalendar-2.8.0/lib/moment.min.js'></script>
+    <script src='/fullcalendar-2.8.0/fullcalendar.js'></script>
+    <script src='/fullcalendar-2.8.0/lang-all.js'></script>
+    <script type='text/javascript' src='/fullcalendar-2.8.0/gcal.js'></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        // page is now ready, initialize the calendar...
+
+        $('#calendar').fullCalendar({
+            lang: 'zh-tw',
+            events: '/events_data',
+
+            eventMouseover: function(calEvent, jsEvent) {
+            //console.log(calEvent);
+              if (calEvent.start == null || calEvent.end == null) {
+                var duration = '全日活動';
+              } else {
+                var duration = calEvent.start.format("HH:mm") + ' 至 ' + calEvent.end.format("HH:mm");
+              }
+              var tooltip = '<div class="tooltipevent panel panel-primary" style="position:absolute;z-index:10001;"><div class="panel-heading">' + calEvent.title + '</div><div class="panel-body"> 時間：' + duration + '</div>';
+              $("body").append(tooltip);
+              $(this).mouseover(function(e) {
+                  $(this).css('z-index', 10000);
+                  $('.tooltipevent').fadeIn('500');
+                  $('.tooltipevent').fadeTo('10', 1.9);
+              }).mousemove(function(e) {
+                  $('.tooltipevent').css('top', e.pageY + 10);
+                  $('.tooltipevent').css('left', e.pageX + 20);
+              });
+          },
+
+          eventMouseout: function(calEvent, jsEvent) {
+              $(this).css('z-index', 8);
+              $('.tooltipevent').remove();
+          }
+        })
+
+    })
+    </script>
+  </body>
+</html>

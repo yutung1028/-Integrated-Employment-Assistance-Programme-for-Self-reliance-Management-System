@@ -1,0 +1,100 @@
+<%- include /common/header %>
+<%- include /common/new_left_menu %>
+
+<div class="push page-content">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="content-box-large">
+                <div class="panel-heading">
+                  <div class="panel-title">用戶資料</div>
+                
+                </div>
+                <div class="panel-body">
+                  <table class="table" style="width: 100%">
+                    <tr>
+                        <th>
+                            頭像
+                        </td>
+                        <td>
+                            <img src="/images/default_user.png" width="70">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            用戶名稱
+                        </th>
+                        <td>
+                            <%= user.username %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            中文全名
+                        </th>
+                        <td>
+                            <% if (user.chinFullName) { %>
+                                <%= user.chinFullName %>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            英文全名
+                        </th>
+                        <td>
+                            <% if (user.engFullName) { %>
+                                <%= user.engFullName %>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            暱稱
+                        </th>
+                        <td>
+                            <%= user.display_name %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            職級
+                        </th>
+                        <td>
+                            <% if (user.engFullName) { %>
+                                <%= user.position %>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            
+                        </th>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+                
+
+        </div>
+      </div>
+</div>
+
+<%- include /common/footer %>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="js/custom.js"></script>
+    <script src="js/tables.js"></script>

@@ -1,0 +1,101 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+		.merged_forms {
+			height:1120px; 
+			width:793px;
+		}
+		body {
+			margin: 0px;
+		}
+		@page 
+	    {
+	       /* size:  auto;*/   /* auto is the initial value */
+	        margin: 0mm;  /* this affects the margin in the printer settings */
+	    }
+	</style>
+</head>
+<body>
+	<!-- first page -->
+					<p style="position:absolute;top:54px;left:689px;">
+					<% if (typeof cases.sr_no != 'undefined') { %> 
+                         <%= cases.sr_no %>
+                    <% } %>
+
+                    <p style="position:absolute;top:53px;left:204px;">
+					CWN</p>
+
+                    <p style="position:absolute;top:53px;left:298px;">
+					<% if (typeof cases.ref_no != 'undefined') { %> 
+                         <%= cases.ref_no %>
+                    <% } %>
+
+                    <p style="position:absolute;top:152px;left:180px;font-size: 15px">
+					<% if (typeof cases.chin_name != 'undefined') { %> 
+                         <%= cases.chin_name %>
+                    <% } %>
+
+                    <!-- second page -->
+                    <p style="position:absolute;top:1173px;left:690px;">
+					<% if (typeof cases.sr_no != 'undefined') { %> 
+                         <%= cases.sr_no %>
+                    <% } %>
+
+                    <p style="position:absolute;top:1174px;left:205px;">
+					CWN</p>
+
+                    <p style="position:absolute;top:1174px;left:298px;">
+					<% if (typeof cases.ref_no != 'undefined') { %> 
+                         <%= cases.ref_no %>
+                    <% } %>
+
+                    <!-- interview date -->
+                    <p style="position:absolute;top:1868px;left:328px;font-size:16px">
+                    <% if (typeof cases.interview_date != 'undefined') { %> 
+                        <% if(typeof cases.interview_date['year'] != 'undefined' && typeof cases.interview_date['month'] != 'undefined' && typeof cases.interview_date['day'] != 'undefined') { %>
+                            <%= cases.interview_date['year'] %> 年 <%= cases.interview_date['month'] %> 月 <%= cases.interview_date['day'] %> 日 
+                            <% if (typeof cases.interview_time != 'undefined') { %>
+                            	<% if (cases.interview_time['half_day'] == 0) { %>
+                            		上午
+                            	<% } else { %>
+                            		下午
+                            	<% } %>
+                            	<%= cases.interview_time['hour'] %> 時 <%= cases.interview_time['minutes'] %> 分
+                            <% } %>
+                        <% } %>
+                    <% } %>
+
+     				<p style="position:absolute;top:1901px;left:411px;font-size: 15px">
+					<% if (typeof cases.chin_name != 'undefined') { %> 
+                         <%= cases.chin_name %>
+                    <% } %>   
+
+                    <% if (typeof cases['witness'] != 'undefined') { %>
+	                    <p style="position:absolute;top:2046px;left:455px;font-size: 16px">
+						<% if (cases['witness'].chin_name) { %> 
+	                         <%= cases['witness'].chin_name %> 
+                             <% if (typeof cases['witness'].position != 'undefined') { %>
+                                / <%= cases['witness'].position %> 
+                             <% } %>
+                        <% } else if (cases['witness'].eng_name) { %>
+                             <%= cases['witness'].eng_name %> 
+                             <% if (typeof cases['witness'].position != 'undefined') { %>
+                                / <%= cases['witness'].position %> 
+                             <% } %>
+                        <% } %>
+                    <% } %> 
+
+                    <p style="position:absolute;top:2086px;left:455px;font-size: 16px">
+                    <% if (typeof cases.print_date != 'undefined') { %> 
+                         <% if(typeof cases.print_date['year'] != 'undefined' && typeof cases.print_date['month'] != 'undefined' && typeof cases.print_date['day'] != 'undefined') { %>
+                              <%= cases.print_date['year'] %> 年 <%= cases.print_date['month'] %> 月 <%= cases.print_date['day'] %> 日
+                         <% } %>
+                    <% } %>           
+
+                    
+				</p><div><img class="merged_forms" src="forms/o2a.jpg/page0001.jpg"></div>
+
+				<td><div><img class="merged_forms" src="forms/o2a.jpg/page0002.jpg"></div>
+	
+
+</body>

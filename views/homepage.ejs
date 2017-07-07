@@ -1,0 +1,89 @@
+<%- include /common/header %>
+<%- include /common/new_left_menu %>
+
+<div id="container" class="page-content">
+
+      <div class="row">
+        <div class="col-md-12">
+        
+          <div class="content-box-large">
+            <div class="panel-heading">
+              <div class="panel-title">最新社署轉介個案</div>
+            
+            </div>
+            <div class="panel-body" style="overflow-x:auto;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>HKIC ID</th>
+                    <th>英文名稱</th>
+                    <th>中文名稱</th>
+                    <th>出生日期</th>
+                    <th>性別</th>
+                    <th>住宅電話</th>
+                    <th>手提電話</th>
+                    <th>轉介日期</th>
+                    <th style="text-align:center">約見剩餘天數</th>
+                    <th>狀態</th>
+                    <!-- <th>邀請信</th> -->
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% data.forEach(function(referral) { %>
+                    <tr>
+                      <td> <%= referral.id %> </td>
+                      <td> <%= referral.hkic_no %> </td>
+                      <td> <%= referral.english_name %> </td>
+                      <td> <%= referral.chinese_name %> </td>
+                      <td> <%= referral.date_of_birth %> </td>
+                      <td> <% if (referral.sex == 0) { %> 
+                              男 
+                           <% } else if (referral.sex == 1) { %>
+                              女
+                           <% } %>
+                      </td>
+                      <td> <%= referral.res_no %> </td>
+                      <td> <%= referral.mobile %> </td>
+                      <td> <%= referral.referral_date %> </td>
+                      <td>  </td>
+                      <td> <%= referral.status %> </td>
+                    </tr>   
+                  <% }); %>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+            
+
+    </div>
+
+
+<%- include /common/footer %>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+    <script src="js/custom.js"></script>
+
+    <script type="text/javascript">
+      // $(".edit_button").click(function(event) {
+      //  event.preventDefault();
+      //  $(this).parent().submit();
+      // })
+    </script>
+  </body>
+</html>

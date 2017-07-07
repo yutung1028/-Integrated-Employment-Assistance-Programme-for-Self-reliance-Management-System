@@ -1,0 +1,60 @@
+<%- include /common/header %>
+
+<div class="page-content">
+  <div class="row">
+
+    <%- include /common/left_menu %>
+
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content-box-large">
+            <div class="panel-heading">
+              <div class="panel-title">最新社署轉介個案</div>
+            
+            </div>
+            <div class="panel-body">
+              <iframe id="printf" name="printf" width="100%" src="10a-chi"></iframe>
+              
+              <div class="" style="margin-top:30px;">
+                 <button type="button" class="btn btn-lg btn-block btn-primary" id="print_button">列印求職記錄及工作計劃表</button>
+                 <button type="button" class="btn btn-lg btn-block btn-default">返回中心日歷</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+            
+
+    </div>
+  </div>
+</div>
+
+<%- include /common/footer %>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+    <script src="js/custom.js"></script>
+
+    <script type="text/javascript">
+      // $(".edit_button").click(function(event) {
+      //  event.preventDefault();
+      //  $(this).parent().submit();
+      // })
+    $("#print_button").click(function(event) {
+      window.frames["printf"].focus();
+      window.frames["printf"].print();
+    })
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<%- include ../common/header %>
+<%- include ../common/new_left_menu %>
+<div class="push page-content">
+
+		  	<div class="row">
+  				<div class="col-md-12">
+  					<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">新增社署轉介個案</div>
+							
+							<!-- <div class="panel-options">
+								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+							</div> -->
+						</div>
+		  				<div class="panel-body">
+		  					<form method="post" action="referral_functions.php" class="form-horizontal" role="form">
+								  <legend class="legend_heading">必填項目</legend>
+								  
+								  <div class="form-group">
+								    <label for="eng_name" class="col-sm-2 control-label form_heading">英文姓名：</label>
+								    <div class="col-sm-2">
+								      <input type="text" class="form-control form_input_text" id="eng_name" name="eng_name" placeholder="">
+								    </div>
+								    <label for="chin_name" class="col-sm-2 control-label form_heading">中文姓名：</label>
+								    <div class="col-sm-2">
+								      <input type="text" class="form-control form_input_text" id="chin_name" name="chin_name" placeholder="">
+								    </div>
+								    <label for="hkic_no" class="col-sm-2 control-label form_heading">HKIC no.：</label>
+								    <div class="col-sm-2">
+								      <input type="text" class="form-control form_input_text" id="hkic_no" name="hkic_no" placeholder="">
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <label for="" class="col-sm-2 control-label form_heading">出生日期：</label>
+								    <div class="col-sm-4">
+								      <input type="text" class="form-control form_input_text" id="date_of_birth" name="date_of_birth" placeholder="yyyy-mm-dd">
+								    </div>
+								    <label for="" class="col-sm-2 control-label form_heading">姓別：</label>
+								    <div class="col-sm-4">
+								      <label class="radio radio-inline">
+										<input type="radio" class="no_margin_top" name="sex" value="0">男
+									  </label>
+									  <label class="radio radio-inline">
+										<input type="radio" class="no_margin_top" name="sex" value="1">女
+									  </label>
+								    </div>
+								    
+								    
+								  </div>
+								  <div class="form-group">
+								  	<label for="" class="col-sm-2 control-label form_heading">婚姻狀態：</label>
+								  	<!-- <input type="text" class="form-control form_input_text" id="martial_status" name="martial_status" placeholder=""> -->
+								    <div class="col-sm-10">
+								      <label class="radio radio-inline">
+										<input type="radio" class="no_margin_top" name="martial_status" value="0">未婚
+									  </label>
+									  <label class="radio radio-inline">
+										<input type="radio" class="no_margin_top" name="martial_status" value="1">已婚
+									  </label>
+									  <label class="radio radio-inline">
+										<input type="radio" class="no_margin_top" name="martial_status" value="2">離婚
+									  </label>
+									  <label class="radio radio-inline">
+										<input type="radio" class="no_margin_top" name="martial_status" value="3">鰥夫／寡婦
+									  </label>
+									</div>
+								  </div>
+								  <div class="form-group">
+								    <label for="" class="col-sm-2 control-label form_heading">住宅電話：</label>
+								    <div class="col-sm-4">
+								      <input type="text" class="form-control form_input_text" id="res_no" name="res_no" placeholder="">
+								    </div>
+								    <label for="" class="col-sm-2 control-label form_heading">手提電話：</label>
+								    <div class="col-sm-4">
+								      <input type="text" class="form-control form_input_text" id="mobile" name="mobile" placeholder="">
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <label for="" class="col-sm-2 control-label form_heading">轉介日期：</label>
+								    <div class="col-sm-10">
+								      <span class="read_only_text"><?php echo date("Y-m-d") ?></span>
+								      <!-- <input type="text" class="form-control form_input_text" id="referral_date" name="referral_date" placeholder=""> -->
+								    </div>
+								  </div>
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label form_heading">狀態：</label>
+								  	<div class="col-sm-10">
+									    <div class="radio">
+											<label>
+												<input class="no_margin_top" type="radio" name="status" value="0">尚未致電
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input class="" type="radio" name="status" value="1">已發邀請信，並定於<input type='text' class='form-control small_text_input' name="meeting_date1" placeholder='yyyy-mm-dd'>面見。
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input class="" type="radio" name="status" value="2">成功致電，並定於<input type='text' class='form-control small_text_input' name="meeting_date2" placeholder='yyyy-mm-dd'>面見。
+											</label>
+										</div>
+									</div>
+								  </div>
+								  <div class="form-group">
+								    <label class="col-sm-2 control-label form_heading">住宅地址：</label>
+								    <div class="col-sm-10">
+								      <textarea class="form-control" placeholder="" rows="3"></textarea>
+								    </div>
+								  </div>
+
+								  <legend class="legend_heading">非必要項目</legend>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">通訊地址(如不同)：</label>
+								  	<div class="col-sm-10">
+								  		<textarea class="form-control" placeholder="" rows="3"></textarea>
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">語言能力：</label>
+								  	<div class="col-sm-10">
+								  		<label class="checkbox-inline">
+											<input class="no_margin_top" type="checkbox">廣東話
+										</label>
+										<label class="checkbox-inline">
+											<input class="no_margin_top" type="checkbox">普通話 
+										</label>
+										<label class="checkbox-inline">
+											<input class="no_margin_top" type="checkbox">客家話 
+										</label>
+										<label class="checkbox-inline">
+											<input class="no_margin_top" type="checkbox">潮洲話 
+										</label>
+										<label class="checkbox-inline">
+											<input class="no_margin_top" type="checkbox">英語 
+										</label>
+										<label class="checkbox-inline">
+											<input class="no_margin_top" type="checkbox">其他： 
+										</label>
+										<input type="text" class="form-control form_input_text language_other">
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">國籍：</label>
+								  	<div class="col-sm-2">
+								  		<input type="text" class="form-control form_input_text" id="" name="" placeholder="">
+								  	</div>
+								  	<label class="col-sm-2 control-label">教育程度：</label>
+								  	<div class="col-sm-2">
+								  		<input type="text" class="form-control form_input_text" id="" name="" placeholder="">
+								  	</div>
+								  	<label class="col-sm-2 control-label">綜緩合資格日期：</label>
+								  	<div class="col-sm-2">
+								  		<input type="text" class="form-control form_input_text" id="" name="" placeholder="yyyy-mm-dd">
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">指定面見日期：</label>
+								  	<div class="col-sm-2">
+								  		<input type="text" class="form-control form_input_text" id="" name="" placeholder="yyyy-mm-dd">
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label">備註：</label>
+								  	<div class="col-sm-10">
+								  		<textarea class="form-control" placeholder="" rows="3"></textarea>
+								  	</div>
+								  </div>
+
+								  <div class="form-group">
+								  	<label class="col-sm-2 control-label"></label>
+								  	<div class="col-sm-10"></div>
+								  </div>
+
+								  <div class="form-group">
+								    <div class="col-sm-offset-2 col-sm-10">
+								      <button type="submit" class="btn btn-primary" name="add_referral">新增</button>
+								    </div>
+								  </div>
+								</form>
+		  				</div>
+		  			</div>
+  				</div>
+  					
+  			</div>
+  		</div>
+	</div>
+</div>
+
+<%- include ../common/footer %>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/custom.js"></script>
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+		.merged_forms {
+			height:1120px; 
+			width:793px;
+		}
+		body {
+			margin: 0px;
+		}
+		@page 
+	    {
+	       /* size:  auto;*/   /* auto is the initial value */
+	        margin: 0mm;  /* this affects the margin in the printer settings */
+	    }
+	</style>
+</head>
+<body>
+					<p style="position:absolute;top:70px;left:123px;font-size: 14px;">
+					<% if (typeof sr_no != 'undefined') { %> 
+                         <%= sr_no %>
+                    <% } %>
+
+                    <p style="position:absolute;top:98px;left:124px;font-size: 14px">
+                    <% if (typeof cases.print_date != 'undefined') { %> 
+                         <% if(typeof cases.print_date['year'] != 'undefined' && typeof cases.print_date['month'] != 'undefined' && typeof cases.print_date['day'] != 'undefined') { %>
+                              <%= cases.print_date['day'] %> - <%= cases.print_date['month'] %> - <%= cases.print_date['year'] %> 
+                         <% } %>
+                    <% } %>     
+
+                    <p style="position:absolute;top:125px;left:417px;font-size: 16px;">
+					<% if (typeof eng_name != 'undefined') { %> 
+                         <%= eng_name %>
+                    <% } %>
+
+                    <p style="position:absolute;top:125px;left:597px;font-size: 16px;">
+					<% if (typeof chin_name != 'undefined') { %> 
+                         <%= chin_name %>
+                    <% } %>
+
+                    <p style="position:absolute;top:147px;left:179px;font-size: 14px;">
+					CWN</p>
+
+                    <p style="position:absolute;top:147px;left:243px;font-size: 14px;">
+					<% if (typeof ref_no != 'undefined') { %> 
+                         <%= ref_no %>
+                    <% } %>
+
+                    <% if (typeof cases['witness'] != 'undefined') { %>
+	                    <p style="position:absolute;top:1010px;left:570px;font-size:14px;">
+						<% if (cases['witness'].chin_name) { %> 
+	                         <%= cases['witness'].chin_name %> 
+	                         <% if (typeof cases['witness'].position != 'undefined') { %>
+	                         	/ <%= cases['witness'].position %> 
+	                         <% } %>
+	                    <% } else if (cases['witness'].eng_name) { %>
+	                    	 <%= cases['witness'].eng_name %> 
+	                         <% if (typeof cases['witness'].position != 'undefined') { %>
+	                         	/ <%= cases['witness'].position %> 
+	                         <% } %>
+	                    <% } %>
+                    <% } %>
+
+                    
+				</p><div><img class="merged_forms" src="forms/4.jpg/page0001.jpg"></div>
+
+	
+
+</body>
